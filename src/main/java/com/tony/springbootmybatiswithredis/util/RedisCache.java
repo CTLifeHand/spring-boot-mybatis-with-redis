@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class RedisCache  implements Cache {
+public class RedisCache implements Cache {
     private static final Logger logger = LoggerFactory.getLogger(RedisCache.class);
 
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
@@ -20,14 +20,12 @@ public class RedisCache  implements Cache {
 
     private static final long EXPIRE_TIME_IN_MINUTES = 30; // redis过期时间
 
-
     public RedisCache(String id) {
         if (id == null) {
             throw new IllegalArgumentException("Cache instances require an ID");
         }
         this.id = id;
     }
-
 
     @Override
     public String getId() {
@@ -128,6 +126,4 @@ public class RedisCache  implements Cache {
         }
         return redisTemplate;
     }
-
-
 }
